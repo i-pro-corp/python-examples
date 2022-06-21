@@ -52,3 +52,18 @@ i-PRO カメラと接続して映像表示するＰＣプログラムのサン�
 | connect_with_mjpeg_4.py   | Save the received image as a JPEG file.                       |
 | connect_with_mjpeg_5.py   | Add reconnection when video is disconnected.                  |
 | connect_with_mjpeg_6.py   | Display the video with GUI using tkinter.                     |
+
+---
+
+## Image classification
+
+関連記事：[画像分類 - VGG](https://i-pro-corp.github.io/Programing-Items/Python/connect_camera/image_classification_vgg.html)
+
+| Filename                        | Abstract                                                              |
+|:--------------------------------|:----------------------------------------------------------------------|
+| preparation.py                  | Preparation for image classification.                                 |
+| classification_vgg.py           | Image classification.                                                 |
+| classification_main.py          | How to write a program simply using classification_vgg.py             |
+| classification_with_camera_1.py | Classifies live images.                                               |
+| classification_with_camera_2.py | Classifies live images with multitasking.                             |
+| classification_gui.py           | Create a GUI application using tkinter.                               |
