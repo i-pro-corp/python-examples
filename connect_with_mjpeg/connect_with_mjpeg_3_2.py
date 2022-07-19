@@ -30,7 +30,7 @@ limitations under the License.
     kinoshita hidetoshi (木下英俊)
 
 [Library install]
-    pip install opencv-python
+    cv2:    pip install opencv-python
 
 [OpenCV]
     Get the file "haarcascade_frontalface_alt2.xml" from the URL below.

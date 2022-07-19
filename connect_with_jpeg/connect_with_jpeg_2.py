@@ -37,9 +37,9 @@ limitations under the License.
     kinoshita hidetoshi (木下英俊)
 
 [Library install]
-    pip install opencv-python
-    pip install numpy
-    pip install requests
+    cv2:        pip install opencv-python
+    numpy:      pip install numpy
+    requests:   pip install requests
 '''
 
 import requests

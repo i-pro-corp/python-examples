@@ -55,9 +55,21 @@ i-PRO カメラと接続して映像表示するＰＣプログラムのサン�
 
 ---
 
+## Connect to wv-xae200w
+
+関連記事：[機能拡張ソフトウェア(WV-XAE200WUX)と接続する](https://i-pro-corp.github.io/Programing-Items/Python/connect_camera/connect_to_wv-xae200w.html)
+
+| Filename                  | Abstract                                                                    |
+|:--------------------------|:----------------------------------------------------------------------------|
+| parse_jpeg.py             | Extracts the recognition result of WV-XAE200WUX from the JPEG file.         |
+| draw_aivmd_rect.py        | Draws the recognition result of WV-XAE200WUX on the received image.         |
+| show_live_camera.py       | Draws the recognition result of WV-XAE200WUX on the live video.             |
+
+---
+
 ## Image classification
 
-関連記事：[画像分類 - VGG](https://i-pro-corp.github.io/Programing-Items/Python/connect_camera/image_classification_vgg.html)
+関連記事：[画像分類 - VGG16](https://i-pro-corp.github.io/Programing-Items/Python/connect_camera/image_classification_vgg.html)
 
 | Filename                        | Abstract                                                              |
 |:--------------------------------|:----------------------------------------------------------------------|

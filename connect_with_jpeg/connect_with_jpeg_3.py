@@ -24,9 +24,9 @@ limitations under the License.
     OpenCV を使って顔検知を追加してみます
 
 [Library install]
-    pip install opencv-python
-    pip install numpy
-    pip install requests
+    cv2:        pip install opencv-python
+    numpy:      pip install numpy
+    requests:   pip install requests
 
 [OpenCV]
     Get the file "haarcascade_frontalface_alt2.xml" from the URL below.

@@ -27,7 +27,7 @@ limitations under the License.
     kinoshita hidetoshi (木下英俊)
 
 [Library install]
-    PIL :           pip install pillow
+    PIL :   pip install pillow
 
 [Note]
     The 'classification_vgg.py' file must be saved in the same folder as this source code.

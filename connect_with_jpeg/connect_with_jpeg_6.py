@@ -30,7 +30,7 @@ limitations under the License.
     kinoshita hidetoshi (木下英俊)
 
 [Library install]
-    pip install pillow
+    PIL :   pip install pillow
 '''
 
 import tkinter as tk

@@ -16,27 +16,27 @@ limitations under the License.
 
 '''
 [Abstract]
-    Try connecting to an i-PRO camera with MJPEG(Motion JPEG).
-    MJPEG(Motion JPEG) で i-PRO カメラと接続します
+    This program connects to an i-PRO camera and draws the recognition result 
+    of AI-VMD (WV-XAE200WUX) on the live video.
+    i-PRO カメラと接続して、AI-VMD (WV-XAE200WUX) の認識結果を受信したライブ映像に描画します。
 
 [Details]
-    Save the received JPEG image as a file.
-    Add a 6-digit number to the end of the file name and save it as a serial number.
-
-    受信した JPEG 画像をファイル保存します。
-    ファイル名の末尾に６ケタの番号を付けて連番で保存します。
+    This program has been confirmed to work with WV-XAE200WUX Ver. 2.20.
 
 [Author]
     kinoshita hidetoshi (木下英俊)
 
-[Library install]
+[library install]
     cv2:    pip install opencv-python
+    numpy:  pip install numpy
 '''
 
 import cv2
 import numpy as np
-import os
 import urllib.request as rq
+import urllib.error
+from parse_jpeg import ParseJpegFile
+from draw_aivmd_rect import DrawAivmdRect
 
 
 user_id     = "user-id"         # Change to match your camera setting
@@ -44,13 +44,13 @@ user_pw     = "password"        # Change to match your camera setting
 host        = "192.168.0.10"    # Change to match your camera setting
 winname     = "VIDEO"           # Window title
 resolution  = "1920x1080"       # Resolution
-framerate   =  5                # Frame rate
-pathOut     = 'image'           # Image file save folder name
+framerate   =  15               # Frame rate
 
 # URL
 url = f"http://{host}/cgi-bin/nphMotionJpeg?Resolution={resolution}&Quality=Standard&Framerate={framerate}"
 
-# Exception definition
+
+# Exception 定義
 BackendError = type('BackendError', (Exception,), {})
 
 def IsWindowVisible(winname):
@@ -96,46 +96,37 @@ def set_digest_auth(uri, user, passwd):
     rq.install_opener(opener)
 
 
-def SaveBinaryData(data, filename):
+if __name__ == "__main__":
     '''
-    [Abstract]
-        Save the binary data with the specified file name.
-    [Param]
-        data :      binary data.
-        filename :  filename.
+    [abstract]
+        __main__ function.
+
+    [raises]
+        None
     '''
-    fout = open(filename, 'wb')
-    fout.write(data)
-    fout.close()
-
-
-if __name__ == '__main__':
-    '''
-    [Abstract]
-        main function.
-    '''
-    windowInitialized = False
-    count = 0
-    if not os.path.exists(pathOut):
-        os.mkdir(pathOut)
-
-    set_digest_auth(url, user_id, user_pw)
-    stream = rq.urlopen(url)
-
-    bytes = bytes()
+    connection = False
     while True:
         try:
-            bytes += stream.read(1024)
-            a = bytes.find(b'\xff\xd8')     # SOI (Start of Image)  0xFFD8
-            b = bytes.find(b'\xff\xd9')     # EOI (End   of Image)  0xFFD9
-            if a != -1 and b != -1:
-                jpg = bytes[a:b+2]
-                bytes = bytes[b+2:]
+            if connection == False:
+                set_digest_auth(url, user_id, user_pw)
+                stream = rq.urlopen(url, timeout=10)
+                data = bytes()
+                connection = True
 
-                # Save jpeg file.
-                count += 1
-                filename = os.path.join(pathOut, 'image_{:06d}.jpg'.format(count))
-                SaveBinaryData(jpg, filename)
+            temp = stream.read(1024)
+
+            if len(temp) == 0:
+                # Probably not properly connected to the camera.
+                print("[ERROR] len(temp) == 0")
+                stream.close()
+                connection = False
+
+            data += temp
+            a = data.find(b'\xff\xd8')     # SOI  (Start of Image)  0xFFD8
+            b = data.find(b'\xff\xd9')     # EOI  (End   of Image)  0xFFD9
+            if a != -1 and b != -1:
+                jpg = data[a:b+2]
+                data = data[b+2:]
 
                 # Convert binary data to ndarray type.
                 img_buf = np.frombuffer(jpg, dtype=np.uint8)
@@ -143,22 +134,24 @@ if __name__ == '__main__':
                 # Decode ndarray data to OpenCV format image data.
                 frame = cv2.imdecode(img_buf, cv2.IMREAD_UNCHANGED)
 
+                # Extracts the recognition result of WV-XAE200WUX (AI-VMD) from the JPEG file.
+                result, aivmd_result = ParseJpegFile(jpg)
+
+                if result==True:
+                    # Draws the recognition result on the received video.
+                    frame = DrawAivmdRect(frame, aivmd_result)
+
                 # Please modify the value to fit your PC screen size.
                 frame2 = cv2.resize(frame, (1280, 720))
 
                 # Display video.
                 cv2.imshow(winname, frame2)
 
-                if windowInitialized==False:
-                    # Specify window position only once at startup.
-                    cv2.moveWindow(winname, 100, 100)
-                    windowInitialized = True
-
                 # Press the "q" key to finish.
                 k = cv2.waitKey(1) & 0xff   # necessary to display the video by imshow ()
                 if k == ord("q"):
                     break
-
+                
                 # Exit the program if there is no specified window.
                 if not IsWindowVisible(winname):
                     break
@@ -167,5 +160,17 @@ if __name__ == '__main__':
             # Press '[ctrl] + [c]' on the console to exit the program.
             print("KeyboardInterrupt")
             break
-    
+
+        except TimeoutError:
+            print("[ERROR] TimeoutError happen.")
+            if connection == True:
+                stream.close()
+                connection = False
+
+        except urllib.error.URLError:
+            print("[ERROR] URLError happen.")
+            if connection == True:
+                stream.close()
+                connection = False
+
     cv2.destroyAllWindows()

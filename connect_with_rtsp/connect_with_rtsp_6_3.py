@@ -36,8 +36,8 @@ limitations under the License.
     kinoshita hidetoshi (木下英俊)
 
 [Library install]
-    pip install opencv-python
-    pip install pillow
+    cv2:    pip install opencv-python
+    PIL :   pip install pillow
 '''
 
 import cv2
