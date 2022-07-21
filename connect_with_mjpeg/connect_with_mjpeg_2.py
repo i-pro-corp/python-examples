@@ -57,7 +57,7 @@ cap = cv2.VideoCapture(url)
 #
 windowInitialized = False
 
-# Exception 定義
+# Exception definition
 BackendError = type('BackendError', (Exception,), {})
 
 def IsWindowVisible(winname):

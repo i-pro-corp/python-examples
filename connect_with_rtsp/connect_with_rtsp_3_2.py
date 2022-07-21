@@ -55,7 +55,7 @@ cascade_file = "haarcascade_frontalface_alt2.xml"       # face
 cascade = cv2.CascadeClassifier(cascade_file)
 
 
-# Exception 定義
+# Exception definition
 BackendError = type('BackendError', (Exception,), {})
 
 def IsWindowVisible(winname):

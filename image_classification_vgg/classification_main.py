@@ -49,6 +49,7 @@ if __name__ == "__main__":
     # Open image file.
     # https://pixabay.com/ja/photos/%e3%81%a6%e3%82%93%e3%81%a8%e3%81%86%e8%99%ab-%e7%94%b2%e8%99%ab-%e3%83%86%e3%83%b3%e3%83%88%e3%82%a6%e3%83%a0%e3%82%b7-1480102/
     # https://pixabay.com/ja/service/license/
+    # Free for commercial use, no attribution required, 1280x855
     # 商用利用無料、帰属表示必要なし、1280x855
     img = Image.open('./data/ladybug-g7744c038e_1280.jpg')
     result = imagenetClassifigationVgg.do_classification(img)
