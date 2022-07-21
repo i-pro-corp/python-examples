@@ -49,7 +49,7 @@ host        = "192.168.0.10"    # Change to match your camera setting
 winname     = "VIDEO"           # Window title
 
 
-# Exception 定義
+# Exception definition.
 BackendError = type('BackendError', (Exception,), {})
 
 def IsWindowVisible(winname):
@@ -87,11 +87,11 @@ def CV2Pil(image):
         PIL.Image format image.    
     '''
     new_image = image.copy()
-    if new_image.ndim == 2:  # モノクロ
+    if new_image.ndim == 2:         # Grayscale
         pass
-    elif new_image.shape[2] == 3:  # カラー
+    elif new_image.shape[2] == 3:   # Color
         new_image = cv2.cvtColor(new_image, cv2.COLOR_BGR2RGB)
-    elif new_image.shape[2] == 4:  # 透過
+    elif new_image.shape[2] == 4:   # Color with alpha channel
         new_image = cv2.cvtColor(new_image, cv2.COLOR_BGRA2RGBA)
     new_image = Image.fromarray(new_image)
     return new_image
@@ -102,8 +102,8 @@ def ImageClassificationProcess(q):
     Image classification process.
 
     Args:
-        q1 :        [i] 顔検知する画像を保存する Queue
-        q2 :        [o] 顔検知した結果を保存する Queue
+        q1 :        [i] Queue that stores images for face detection.
+        q2 :        [o] Queue that stores face detection results.
     Returns:
         None
     '''
@@ -114,7 +114,7 @@ def ImageClassificationProcess(q):
         try:
             image = q.get(True, 10)
 
-            # 終了処理： q1.get から取得したものが int で -1 なら終了
+            # Terminate process
             if type(image) == int:
                 if image == -1:
                     break
@@ -136,7 +136,7 @@ def ImageClassificationProcess(q):
 
 '''
 [Abstract]
-    main 関数
+    __main__
 '''
 if __name__ == '__main__':
     # Create an instance of class cv2.VideoCapture
@@ -189,7 +189,7 @@ if __name__ == '__main__':
                 break
 
         except KeyboardInterrupt:
-            # Press ctrl -c on the console to exit the program.
+            # Press '[ctrl] + [c]' on the console to exit the program.
             print("KeyboardInterrupt")
             break
 

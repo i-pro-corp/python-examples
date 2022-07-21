@@ -46,7 +46,7 @@ host        = "192.168.0.10"    # Change to match your camera setting
 winname     = "VIDEO"           # Window title
 
 
-# Exception 定義
+# Exception definition.
 BackendError = type('BackendError', (Exception,), {})
 
 def IsWindowVisible(winname):
@@ -84,11 +84,11 @@ def CV2Pil(image):
         PIL.Image format image.    
     '''
     new_image = image.copy()
-    if new_image.ndim == 2:  # モノクロ
+    if new_image.ndim == 2:         # Grayscale
         pass
-    elif new_image.shape[2] == 3:  # カラー
+    elif new_image.shape[2] == 3:   # Color
         new_image = cv2.cvtColor(new_image, cv2.COLOR_BGR2RGB)
-    elif new_image.shape[2] == 4:  # 透過
+    elif new_image.shape[2] == 4:   # Color with alpha channel
         new_image = cv2.cvtColor(new_image, cv2.COLOR_BGRA2RGBA)
     new_image = Image.fromarray(new_image)
     return new_image
@@ -152,7 +152,7 @@ if __name__ == '__main__':
                 break
 
         except KeyboardInterrupt:
-            # Press ctrl -c on the console to exit the program.
+            # Press '[ctrl] + [c]' on the console to exit the program.
             print("KeyboardInterrupt")
             break
 

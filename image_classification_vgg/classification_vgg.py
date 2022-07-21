@@ -169,7 +169,7 @@ class ImagenetClassificationVgg():
         # Added batch size dimension.
         inputs = img_transformed.unsqueeze_(0)  # torch.Size([1, 3, 224, 224])
 
-        # ネットワークモデルへ画像を入力し、出力をラベルに変換
+        # Input images to the network model and convert the output to labels.
         out = self.net(inputs)      # torch.Size([1, 1000])
         result = self.predictor.predict_max(out)
 
@@ -185,28 +185,32 @@ if __name__ == "__main__":
     # Open image file.
     # https://pixabay.com/ja/photos/%e3%81%a6%e3%82%93%e3%81%a8%e3%81%86%e8%99%ab-%e7%94%b2%e8%99%ab-%e3%83%86%e3%83%b3%e3%83%88%e3%82%a6%e3%83%a0%e3%82%b7-1480102/
     # https://pixabay.com/ja/service/license/
+    # Free for commercial use, no attribution required, 1280x855
     # 商用利用無料、帰属表示必要なし、1280x855
-    img = Image.open('./data/ladybug-g7744c038e_1280.jpg')      # [height][width][color]
+    img = Image.open('./data/ladybug-g7744c038e_1280.jpg')
     result = imagenetClassifigationVgg.do_classification(img)
     print("Result: ", result)
 
     # https://pixabay.com/ja/photos/goldenretriever-%E7%8A%AC-3724972/
     # https://pixabay.com/ja/service/license/
+    # Free for commercial use, no attribution required, 640x426
     # 商用利用無料、帰属表示必要なし、640x426
-    img = Image.open('./data/goldenretriever-3724972_640.jpg')  # [height][width][color]
+    img = Image.open('./data/goldenretriever-3724972_640.jpg')
     result = imagenetClassifigationVgg.do_classification(img)
     print("Result: ", result)
 
     # https://pixabay.com/ja/photos/%e8%bb%8a-%e7%94%b2%e8%99%ab-%e3%83%95%e3%82%a9%e3%83%ab%e3%82%af%e3%82%b9%e3%83%af%e3%83%bc%e3%82%b2%e3%83%b3-1283947/
     # https://pixabay.com/ja/service/license/
+    # Free for commercial use, no attribution required, 1920x1280
     # 商用利用無料、帰属表示必要なし、1920x1280
-    img = Image.open('./data/car-g955f2640f_1920.jpg')          # [height][width][color]
+    img = Image.open('./data/car-g955f2640f_1920.jpg')
     result = imagenetClassifigationVgg.do_classification(img)
     print("Result: ", result)
 
     # https://pixabay.com/ja/photos/%e3%83%9e%e3%83%bc%e3%82%ac%e3%83%ac%e3%83%83%e3%83%88-%e3%83%87%e3%82%a4%e3%82%b8%e3%83%bc-%e8%8a%b1-729510/
     # https://pixabay.com/ja/service/license/
+    # Free for commercial use, no attribution required, 1920x1249
     # 商用利用無料、帰属表示必要なし、1920x1249
-    img = Image.open('./data/marguerite-gfad1f1cea_1920.jpg')   # [height][width][color]
+    img = Image.open('./data/marguerite-gfad1f1cea_1920.jpg')
     result = imagenetClassifigationVgg.do_classification(img)
     print("Result: ", result)

@@ -106,7 +106,7 @@ def SaveImageProcess(imageQueue):
                 if image == -1:
                     break
 
-            # ファイル保存
+            # Save image file.
             cv2.imwrite(filename, image)
 
         except Empty: # timeout of q1.get()

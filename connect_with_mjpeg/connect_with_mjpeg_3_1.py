@@ -47,7 +47,7 @@ framerate   =  15               # Frame rate
 # URL
 url = f"http://{user_id}:{user_pw}@{host}/cgi-bin/nphMotionJpeg?Resolution={resolution}&Quality=Standard&Framerate={framerate}"
 
-# Exception 定義
+# Exception definition.
 BackendError = type('BackendError', (Exception,), {})
 
 def IsWindowVisible(winname):
@@ -135,10 +135,10 @@ if __name__ == '__main__':
         try:
             ret, frame = cap.read()
             if ret == True:
-                # 顔検知
+                # Face detection.
                 face_list = DetectFaces(cascade, frame)
 
-                # 検出した顔枠を描画
+                # Draw face rectangles.
                 DrawFaceRectangles(frame, face_list)
 
                 # Please modify the value to fit your PC screen size.
