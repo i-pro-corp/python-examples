@@ -79,3 +79,15 @@ i-PRO カメラと接続して映像表示するＰＣプログラムのサン�
 | classification_with_camera_1.py | Classifies live images.                                               |
 | classification_with_camera_2.py | Classifies live images with multitasking.                             |
 | classification_gui.py           | Create a GUI application using tkinter.                               |
+
+---
+
+## MobileNet-SSD
+
+関連記事：[物体検知 － MobileNet-SSD](https://i-pro-corp.github.io/Programing-Items/Python/connect_camera/mobilenet-ssd.html)
+
+| Filename                                       | Abstract                                                                        |
+|:-----------------------------------------------|:--------------------------------------------------------------------------------|
+| run_mobilenetv3-ssdlite_jpeg_demo.py           | Detect objects in JPEG images using the "MobileNetV3 SSD-Lite"                  |
+| run_mobilenetv3-ssdlite_live_pc-cam_demo.py    | Detect objects in the pc camera live video using the "MobileNetV3 SSD-Lite".    |
+| run_mobilenetv3-ssdlite_live_i-pro-cam_demo.py | Detect objects in the i-pro camera live video using the "MobileNetV3 SSD-Lite". |

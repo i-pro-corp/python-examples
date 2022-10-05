@@ -130,6 +130,6 @@ dmypy.json
 
 
 haarcascade_*.xml
-image_*.jpg
-image/
+/image_*/*.jpg
+/connect_to_extensions/*.jpg
 data/
