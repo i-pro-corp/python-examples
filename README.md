@@ -96,7 +96,7 @@ i-PRO カメラと接続して映像表示するＰＣプログラムのサン�
 
 ## ONVIF-Meta
 
-関連記事：[ONVIFメタ情報受信 － ONVIF Meta](https://i-pro-corp.github.io/Programing-Items/Python/receive_onvifmeta_event.html)
+関連記事：[ONVIFメタ情報受信 － ONVIF Meta](https://i-pro-corp.github.io/Programing-Items/Python/connect_camera/receive_onvifmeta_event.html)
 
 | Filename                                       | Abstract                                                                        |
 |:-----------------------------------------------|:--------------------------------------------------------------------------------|
