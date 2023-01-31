@@ -42,9 +42,9 @@ from torchvision import transforms
 
 
 # Initialize variables.
-user_id     = "admin"               # Change to match your camera setting
-user_pw     = "Admin12345"          # Change to match your camera setting
-host        = "192.168.2.126"       # Change to match your camera setting
+user_id     = "user-id"             # Change to match your camera setting
+user_pw     = "password"            # Change to match your camera setting
+host        = "192.168.0.10"        # Change to match your camera setting
 resolution  = "1920x1080"           # Resolution
 framerate   =  5                    # Framerate
 winname     = "Annotated"           # Window title.
