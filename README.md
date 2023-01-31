@@ -91,3 +91,13 @@ i-PRO カメラと接続して映像表示するＰＣプログラムのサン�
 | run_mobilenetv3-ssdlite_jpeg_demo.py           | Detect objects in JPEG images using the "MobileNetV3 SSD-Lite"                  |
 | run_mobilenetv3-ssdlite_live_pc-cam_demo.py    | Detect objects in the pc camera live video using the "MobileNetV3 SSD-Lite".    |
 | run_mobilenetv3-ssdlite_live_i-pro-cam_demo.py | Detect objects in the i-pro camera live video using the "MobileNetV3 SSD-Lite". |
+
+---
+
+## ONVIF-Meta
+
+関連記事：[ONVIFメタ情報受信 － ONVIF Meta](https://i-pro-corp.github.io/Programing-Items/Python/receive_onvifmeta_event.html)
+
+| Filename                                       | Abstract                                                                        |
+|:-----------------------------------------------|:--------------------------------------------------------------------------------|
+| ws_metarcv.py                                  | Receive ONVIF Meta Event Stream                                                 |
